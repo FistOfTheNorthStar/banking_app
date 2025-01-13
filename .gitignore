@@ -24,7 +24,11 @@ hs_err_pid*
 replay_pid*
 
 
-/.gradle/
-/account-service/.gradle/
-/transaction-service/.gradle/
-/user-service/.gradle/
+.gradle/
+account-service/.gradle/
+account-service/build/
+transaction-service/.gradle/
+transaction-service/build/
+user-service/.gradle/
+user-service/build/
+build/
