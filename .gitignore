@@ -12,6 +12,7 @@
 
 # Package Files #
 *.jar
+!gradle/wrapper/gradle-wrapper.jar
 *.war
 *.nar
 *.ear
@@ -36,7 +37,6 @@ frontend/yarn-error.log*
 *.iml
 .vscode/
 .settings/
-**/gradle/wrapper/gradle-wrapper.jar
 .DS_Store
 
 account-service/.gradle/
