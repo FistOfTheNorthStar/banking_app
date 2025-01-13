@@ -1,4 +1,4 @@
-package main.java.com.banking.account.controller;
+package com.banking.account.controller;
 
 import com.banking.account.model.Account;
 import com.banking.account.service.AccountService;

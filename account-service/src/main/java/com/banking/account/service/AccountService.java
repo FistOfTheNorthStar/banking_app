@@ -1,13 +1,16 @@
 package com.banking.account.service;
 
-import com.banking.account.client.TransactionServiceClient;
-import com.banking.account.model.Account;
-import com.banking.account.repository.AccountRepository;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.UUID;
-import lombok.RequiredArgsConstructor;
+
 import org.springframework.stereotype.Service;
+
+import com.banking.account.client.TransactionServiceClient;
+import com.banking.account.model.Account;
+import com.banking.account.repository.AccountRepository;
+
+import lombok.RequiredArgsConstructor;
 
 @Service
 @RequiredArgsConstructor
