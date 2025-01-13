@@ -16,19 +16,47 @@ public class AccountController {
     private final AccountService accountService;
 
     @PostMapping
-    public ResponseEntity<Account> createAccount(
+    public ResponseEntity<?> createAccount(
             @RequestParam String customerId,
             @RequestParam(defaultValue = "0") BigDecimal initialCredit) {
-        return ResponseEntity.ok(accountService.createAccount(customerId, initialCredit));
-    }
-
-    @GetMapping("/{id}")
-    public ResponseEntity<Account> getAccount(@PathVariable UUID id) {
-        return ResponseEntity.ok(accountService.getAccount(id));
+        try {
+            Account account = accountService.createAccount(customerId, initialCredit);
+            return ResponseEntity.ok(account);
+        } catch (Exception e) {
+            return ResponseEntity.badRequest()
+                .body(new ErrorResponse("Failed to create account: " + e.getMessage()));
+        }
     }
 
     @GetMapping("/customer/{customerId}")
-    public ResponseEntity<Account> getAccountByCustomerId(@PathVariable String customerId) {
-        return ResponseEntity.ok(accountService.getAccountByCustomerId(customerId));
+    public ResponseEntity<?> getAccountByCustomerId(@PathVariable String customerId) {
+        try {
+            Account account = accountService.getAccountByCustomerId(customerId);
+            return ResponseEntity.ok(account);
+        } catch (RuntimeException e) {
+            return ResponseEntity.notFound().build();
+        }
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<?> getAccount(@PathVariable UUID id) {
+        try {
+            Account account = accountService.getAccount(id);
+            return ResponseEntity.ok(account);
+        } catch (RuntimeException e) {
+            return ResponseEntity.notFound().build();
+        }
+    }
+}
+
+class ErrorResponse {
+    private String message;
+
+    public ErrorResponse(String message) {
+        this.message = message;
+    }
+
+    public String getMessage() {
+        return message;
     }
 }
